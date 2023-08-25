@@ -1,3 +1,4 @@
+import './styles.css';
 import { Pub } from "../Pub"
 
 export const Pubs = ({ files }) => {

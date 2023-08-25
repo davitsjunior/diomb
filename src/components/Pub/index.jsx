@@ -1,3 +1,5 @@
+import './styles.css';
+
 export const Pub = ({fileName, edicao, docYear, createdAt}) => {
     return (
         <div className='pub'>
