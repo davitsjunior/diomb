@@ -1,25 +1,30 @@
-import logo from './logo.svg';
 import './App.css';
+import { Component } from 'react';
+import { loadPosts } from './utils/load-posts';
+import { Pubs } from './components/Pubs';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends Component {
+  state = {
+    files: []
+  };
+
+  async componentDidMount() {
+    await this.loadPosts();
+
+  }
+
+  loadPosts = async () => {
+    const filesJson = await loadPosts();
+    this.setState({ files: filesJson.files });
+  }
+
+  render() {
+    const { files } = this.state;
+    return (
+      <section className='container'>
+        <Pubs files={files}/>
+      </section>
+    );
+  }
 }
-
 export default App;
