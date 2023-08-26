@@ -77,6 +77,10 @@ h1 {
   font-size: 14px;
 }
 
+.cabecalho{
+  padding-bottom: 30px;
+}
+
 /* Media Queries */
 @media (max-width: 768px) {
   .container {

@@ -11,6 +11,7 @@ export const Pubs = ({ files }) => {
                     edicao={file.edicao}
                     docYear={file.docYear}
                     createdAt={file.createdAt}
+                    downloadLink={`http://pmborrazopolis.no-ip.org:10130/download/${file.internalName}.pdf`}
                 />
             ))}
         </div>

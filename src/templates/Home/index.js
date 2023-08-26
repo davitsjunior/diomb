@@ -4,6 +4,11 @@ import { loadPosts } from '../../utils/load-posts';
 import { Pubs } from '../../components/Pubs';
 import { LoadMorePosts } from '../../components/button/LoadMorePosts';
 import { InputPesquisa } from '../../components/TextInput';
+import { reverse } from 'lodash';
+import { format } from 'date-fns';
+import { Header } from '../../components/Header';
+import { Footer } from '../../components/Footer';
+
 
 export const Home = () => {
 
@@ -17,17 +22,23 @@ export const Home = () => {
 
   const filteredPosts = !!searchValue ?
     allFiles.filter(file => {
-      return file.fileName.toLowerCase().includes(searchValue.toLowerCase());
+      const formattedDate = format(new Date(file.createdAt), 'dd-MM-yyyy');
+      return (
+        file.fileName.toLowerCase().includes(searchValue.toLowerCase()) ||
+        formattedDate.includes(searchValue.toLowerCase())
+      );
     })
     :
     files;
 
-  const handlLoadPosts = useCallback( async (page, postsPerPage) => {
+  const handlLoadPosts = useCallback(async (page, postsPerPage) => {
     const filesJson = await loadPosts();
 
-    setFiles(filesJson.files.slice(page, postsPerPage));
-    setAllFiles(filesJson.files)
-  }, [] )
+    const reversedFiles = reverse(filesJson.files);
+
+    setFiles(reversedFiles.slice(page, postsPerPage));
+    setAllFiles(reversedFiles)
+  }, [])
 
   useEffect(() => {
     handlLoadPosts(0, postsPerPage);
@@ -50,7 +61,12 @@ export const Home = () => {
   return (
     <section className='container'>
 
+      <div className='cabecalho'>
+        <Header />
+      </div>
+
       <div className='search-container'>
+
         {!!searchValue && (
           <h1>Referência para Pesquisa: {searchValue}</h1>
         )}
@@ -67,7 +83,12 @@ export const Home = () => {
       )}
 
       {filteredPosts.length === 0 && (
-        <p>Nenhum resultado retornado da pesquisa!</p>
+        <div>
+          <h3>Nenhum resultado retornado da pesquisa!</h3><br/>
+          <p>Pesquise por data, exemplo: dd-mm-yyyy</p><br/>
+          <p>Pesquise por edição, exemplo: 123-2023</p>
+        </div>
+
       )}
 
       <div className='button-container'>
@@ -79,6 +100,10 @@ export const Home = () => {
           />
         )}
 
+      </div>
+
+      <div>
+        <Footer />
       </div>
     </section>
   );

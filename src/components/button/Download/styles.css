@@ -3,22 +3,34 @@
 /* Componente ButtonDownload */
 .download-button {
   width: 100%;
-    padding: 10px 20px;
-    font-size: 16px;
-    background-color: #007bff; /* Azul brilhante */
-    color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: background-color 0.3s, transform 0.2s;
-  }
-  
-  .download-button:hover {
-    background-color: #0056b3; /* Tom mais escuro de azul ao passar o mouse */
-    transform: scale(1.05); /* Efeito de escala ao passar o mouse */
-  }
-  
-  .download-button:active {
-    transform: scale(0.95); /* Efeito de escala ao clicar */
-  }
-  
+  padding: 10px 20px;
+  font-size: 16px;
+  background-color: #5cb85c; /* Verde suave */
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s;
+  display: flex;
+  align-items: center; /* Centraliza o ícone verticalmente */
+  justify-content: space-between; /* Cria espaço entre o ícone e o texto */
+}
+
+.download-button svg {
+  width: 18px;
+  height: 18px;
+  margin-right: 8px; /* Adiciona espaço entre o ícone e o texto */
+}
+
+.download-button:hover {
+  background-color: #449d44; /* Tom mais escuro de verde ao passar o mouse */
+  transform: scale(1.05); /* Efeito de escala ao passar o mouse */
+}
+
+.download-button:active {
+  transform: scale(0.95); /* Efeito de escala ao clicar */
+}
+
+.alink{
+  text-decoration: none;
+}

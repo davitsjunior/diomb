@@ -1,26 +1,27 @@
 .pub {
   background: #fff;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  padding: 20px; /* Reduzi o padding para um estilo mais leve */
+  padding: 20px;
+  display: flex;
+  flex-direction: column; /* Empilha as divs verticalmente */
+  gap: 10px; /* Adiciona espaço entre as divs */
   transition: transform 0.2s ease-in-out;
-  cursor: pointer; /* Adiciona um cursor indicando que é clicável */
+  cursor: pointer;
+  border-radius: 5px;
 }
 
 .pub:hover {
-  transform: scale(1.02); /* Reduzi um pouco o efeito de escala */
+  transform: scale(1.02);
 }
 
 /* Tipografia */
-.pub h2 {
-  font-size: 20px;
-  margin-bottom: 10px;
+.pub strong {
+  font-size: 16px;
   color: #333;
 }
 
-.pub p {
+.pub span {
   font-size: 14px;
-  margin-bottom: 5px;
   color: #666;
 }
 
-/* ... (outros estilos, se necessário) ... */

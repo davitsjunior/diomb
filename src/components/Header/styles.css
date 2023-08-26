@@ -1,0 +1,43 @@
+.header {
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s;
+}
+
+.logo-container {
+    position: relative;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.logo {
+    width: 70%;
+    height: 100%;
+    transition: transform 0.2s;
+}
+
+.logo:hover {
+    transform: scale(1.1);
+}
+
+.title {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.main-title {
+    font-size: 24px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 5px;
+}
+
+.sub-title {
+    font-size: 18px;
+    color: #666;
+}
