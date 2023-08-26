@@ -1,5 +1,5 @@
 import './styles.css';
-import { Component, useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { loadPosts } from '../../utils/load-posts';
 import { Pubs } from '../../components/Pubs';
 import { LoadMorePosts } from '../../components/button/LoadMorePosts';

@@ -1,3 +1,4 @@
+import { ButtonDownload } from '../button/Download';
 import './styles.css';
 
 export const Pub = ({fileName, edicao, docYear, createdAt}) => {
@@ -7,6 +8,7 @@ export const Pub = ({fileName, edicao, docYear, createdAt}) => {
             <p>{edicao}</p>
             <p>{docYear}</p>
             <p>{createdAt}</p>
+            <ButtonDownload/>
             <p></p>
         </div>
     )

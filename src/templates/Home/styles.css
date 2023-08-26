@@ -1,4 +1,4 @@
-.container {
+/* .container {
   max-width: 1200px;
   margin: 0 auto;
   min-height: 100vh;
@@ -18,4 +18,68 @@
 
 .search-container h1 {
   margin-bottom: 30px;
+} */
+
+/* styles.css */
+
+/* Layout */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  min-height: 100vh;
+  background-color: #f4f7f9; /* Um tom suave de cinza-azulado */
+  padding: 30px;
+}
+
+.button-container {
+  display: flex;
+  align-items: flex-end;
+  margin-top: auto;
+  margin-bottom: 20px; /* Ajuste conforme necessário */
+}
+
+/* Typography */
+h1 {
+  font-size: 24px;
+  margin-bottom: 15px;
+  color: #2c3e50; /* Um tom de azul escuro */
+}
+
+/* Componentes */
+.search-container {
+  margin-bottom: 30px;
+}
+
+/* Botões */
+.button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.primary-button {
+  background-color: #3498db; /* Um tom de azul brilhante */
+  color: white;
+}
+
+.secondary-button {
+  background-color: #2ecc71; /* Um tom de verde brilhante */
+  color: white;
+}
+
+/* Barra de Pesquisa */
+.input-pesquisa {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+/* Media Queries */
+@media (max-width: 768px) {
+  .container {
+    padding: 20px;
+  }
 }
