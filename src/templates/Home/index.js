@@ -8,6 +8,7 @@ import { reverse } from 'lodash';
 import { format } from 'date-fns';
 import { Header } from '../../components/Header';
 import { Footer } from '../../components/Footer';
+import { ErrorMessage } from '../../components/ErrorMessage';
 
 
 export const Home = () => {
@@ -17,6 +18,8 @@ export const Home = () => {
   const [page, setPage] = useState(0);
   const [postsPerPage] = useState(10);
   const [searchValue, setSearchValue] = useState('');
+  const [showError, setShowError] = useState(false);
+  const [errorMessage, setErrorMessage] = useState('');
 
   const noMorePosts = page + postsPerPage >= allFiles.length;
 
@@ -32,16 +35,22 @@ export const Home = () => {
     files;
 
   const handlLoadPosts = useCallback(async (page, postsPerPage) => {
-    const filesJson = await loadPosts();
+    try {
+      const filesJson = await loadPosts();
+      const reversedFiles = reverse(filesJson.files);
 
-    const reversedFiles = reverse(filesJson.files);
-
-    setFiles(reversedFiles.slice(page, postsPerPage));
-    setAllFiles(reversedFiles)
-  }, [])
+      setFiles(reversedFiles.slice(page, postsPerPage));
+      setAllFiles(reversedFiles);
+    } catch (error) {
+      console.error('Erro ao carregar os posts:', error);
+      setErrorMessage('Erro ao carregar as Publicações. Por favor, tente novamente mais tarde ou entre em contato com a Prefeitura pelo telefone: (43) 3452-8700.');
+      setShowError(true);
+    }
+  }, []);
 
   useEffect(() => {
     handlLoadPosts(0, postsPerPage);
+    document.title = "Diário Oficial Eletrônico"
   }, [handlLoadPosts, postsPerPage]);
 
   const loadMorePosts = () => {
@@ -82,14 +91,21 @@ export const Home = () => {
         <Pubs files={filteredPosts} />
       )}
 
-      {filteredPosts.length === 0 && (
+      {filteredPosts.length === 0 && !showError && (
         <div>
-          <h3>Nenhum resultado retornado da pesquisa!</h3><br/>
-          <p>Pesquise por data, exemplo: dd-mm-yyyy</p><br/>
+          <h3>Nenhum resultado retornado da pesquisa!</h3><br />
+          <p>Pesquise por data, exemplo: dd-mm-yyyy</p><br />
           <p>Pesquise por edição, exemplo: 123-2023</p>
         </div>
 
       )}
+
+      {showError && (
+        <div className='error-message'>
+          <ErrorMessage message={errorMessage} />
+        </div>
+      )}
+
 
       <div className='button-container'>
         {!searchValue && (
